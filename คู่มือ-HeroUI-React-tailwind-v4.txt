@@ -1,0 +1,60 @@
+- สร้างโปรเจค
+npm create vite@latest name --template
+
+cd my-app
+npm install
+npm install axios 
+npm install react-router-dom
+npm install react-redux
+npm install @mui/material
+
+-หรือลงทีเดียว
+npm install axios react-router-dom react-redux @mui/material sweetalert2 jwt-decode aos qrcode.react swiper
+
+- ติดตั้ง Tailwind CSS:
+npm install tailwindcss @tailwindcss/vite
+
+- ติดตั้ง Heroui Framer-motion:
+npm i @heroui/react framer-motion
+
+- เปิดไฟล์  vite.config.js และปรับปรุงเนื้อหาให้เป็นดังนี้:
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+});
+
+
+- สร้างไฟล์ hero.js ใน src
+import { heroui } from "@heroui/react";
+export default heroui();
+
+
+- เปิดไฟล์ src/index.css และเพิ่มการนำเข้า Tailwind CSS:
+@import "tailwindcss";
+@plugin './hero.js';
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
+
+
+- ปรับปรุงไฟล์ main.jsx เพื่อใช้ Tailwind CSS:
+- เปิดไฟล์ src/main.jsx และปรับปรุงให้เป็นดังนี้:
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import {HeroUIProvider} from '@heroui/react'
+import App from './App'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <HeroUIProvider>
+      <App />
+    </HeroUIProvider>
+  </React.StrictMode>,
+)
+
+__________ run
+npm run dev
